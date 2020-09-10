@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+from django import forms
 from .apps import add
 from django.views.generic.base import TemplateView
 from django.shortcuts import render, redirect
@@ -14,7 +15,7 @@ def home(request):
 
 def map(request):
     return render(request, 'map18.html')
-
+'''
 def register(request):
     if request.method == 'POST':
         first_name = request.POST['first_name']
@@ -25,9 +26,9 @@ def register(request):
         password2 = request.POST['password2']
         user=User.objects.create_user(username=username,password=password1,email=email,first_name=first_name,last_name=last_name)
         user.save()
-        return redirect('')
+        return redirect('/')
     else :
-        return render(request, 'register.html')
+        return render(request, 'register.html')'''
 
 class a(TemplateView):
     template_name = 'a.html'

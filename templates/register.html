@@ -5,8 +5,10 @@
     <title>Register</title>
   </head>
   <body>
+    <h2>Go to <a href="/"> MAIN </a>  page
+  </h2>
     <h1>Hello! please fill your detail, to register</h1>
-    <form class="" action="register" method="post">
+          <form class="" action="register" method="post">
       {% csrf_token %}
       <input type="text" name="first_name" placeholder="First Name" value=""><br>
       <input type="text" name="last_name" placeholder="Last Name" value=""><br>
@@ -17,5 +19,11 @@
       <input type="submit">
 
     </form>
+    <div class="">
+      {% for m in messages %}
+      <h2>{{m}}</h2>
+      {% endfor %}
+
+    </div>
   </body>
 </html>
