@@ -5,9 +5,16 @@
     <title>hello</title>
   </head>
   <body>
+
+    {% if user.is_authenticated %}
+    <h1>Hello! {{ user.first_name }}</h1>
+    <li><a href="home">Main</a></li>
+    <li><a href="accounts/logout">Logout</a></li>
+    {% else %}
     <h1>Hello! Users</h1>
-    <li><a href="home">HOME</a></li>
     <li><a href="map">MAP</a></li>
     <li><a href="accounts/register">Register</a></li>
+    <li><a href="accounts/login">Login</a></li>
+    {% endif %}
   </body>
 </html>
