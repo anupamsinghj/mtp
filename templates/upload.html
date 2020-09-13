@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>UPLOAD</title>
+  </head>
+  <body>
+    <h1>Upload</h1>
+    <form class="" action="upload" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input type="file" name="document" placeholder="CSV file" value=""><br>
+      <input type="submit" >
+
+    </form>
+
+    <div >
+      {% for m in messages %}
+      <h2>{{m}}</h2>
+      {% endfor %}
+    </div>
+    {% if url %}
+    <p>Uploaded file: <a href="{{ url }}">{{ url }}</a></p>
+    {% endif %}
+    <pre><h2>Go back to main menu: </h2> <a href="/" class="right">Return</a></pre>
+  </body>
+</html>

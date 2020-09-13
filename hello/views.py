@@ -7,6 +7,8 @@ from django.contrib.auth.models import User,auth
 # Create your views here.
 
 
+
+
 def hello(request):
     return render(request, 'hello.html')
 

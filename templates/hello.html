@@ -9,7 +9,9 @@
     {% if user.is_authenticated %}
     <h1>Hello! {{ user.first_name }}</h1>
     <li><a href="home">Main</a></li>
+    <li><a href="accounts/fupload">Project</a></li>
     <li><a href="accounts/logout">Logout</a></li>
+    <li><a href="accounts/upload">Upload</a></li>
     {% else %}
     <h1>Hello! Users</h1>
     <li><a href="map">MAP</a></li>
