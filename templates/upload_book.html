@@ -1,0 +1,19 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Upload_book</title>
+  </head>
+  <body>
+    <h1>Poonam Upload book</h1>
+    <h3> <a href="{% url 'books' %}"> Book</a> </h3>
+    <h3> <a href="{% url 'hello' %}"> home</a> </h3>
+    <form class="" action="uploadb" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+          {{form|crispy}}
+<input type="submit" class="btn btn-primary" >
+    </form>
+
+  </body>
+</html>

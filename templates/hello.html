@@ -9,14 +9,15 @@
     {% if user.is_authenticated %}
     <h1>Hello! {{ user.first_name }}</h1>
     <li><a href="home">Main</a></li>
-    <li><a href="accounts/fupload">Project</a></li>
-    <li><a href="accounts/logout">Logout</a></li>
-    <li><a href="accounts/upload">Upload</a></li>
+    <li><a href="accounts/fupload" class="btn btn-primary">Project</a></li>
+    <li><a href="{% url 'books' %} " class="btn btn-primary"> Book</a> </li>
+    <li><a href="accounts/logout" class="btn btn-primary">Logout</a></li>
+    <li><a href="accounts/upload" class="btn btn-primary">Upload</a></li>
     {% else %}
     <h1>Hello! Users</h1>
     <li><a href="map">MAP</a></li>
-    <li><a href="accounts/register">Register</a></li>
-    <li><a href="accounts/login">Login</a></li>
+    <li><a href="accounts/register" class="btn btn-primary">Register</a></li>
+    <li><a href="accounts/login" class="btn btn-primary">Login</a></li>
     {% endif %}
   </body>
 </html>

@@ -49,9 +49,12 @@
   <input type="submit" value="Submit">
   </form>
 
-  <h2 style = "color:blue">To see your buffer area : </h2>
-  <button type="button" onclick="alert('Are you sure!')", style="background-color: yellow;">Click here!</button>
-  </div>
+    <form class="" action="create" method="post">
+      {% csrf_token %}
+      <h2 style = "color:blue">To see your buffer area : </h2>
+      <input type="submit"  onclick="alert('Are you sure!')"><br>
+    <button type="button" onclick="alert('Are you sure!')", style="background-color: yellow;">Click here!</button>
+    </form>  </div>
   <div class="main">
   <h1>OUTPUT SCREEN</h1>
 

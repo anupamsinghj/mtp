@@ -28,7 +28,7 @@ def draw_circle(array=[],lat=0,lon=0,radius=0):
 def map_base(lat=28.0760,lon= 77.8777,zoom=12):
     gmap=gmplot.GoogleMapPlotter(lat,lon,zoom)
     gmap.apikey = "AIzaSyCeM999Sqh_Vfo4ZZMAmMUJyRQcl78SyRw"
-    gmap.draw( "C:\\Users\91963\\Desktop\\poonam.html" )
+    gmap.draw( "templates/abc.html" )
     #gmap.circle(19.076956, 72.848481, 8000,'red')
     print('map_created')
     return gmap
@@ -79,7 +79,7 @@ def f_poly( area,points,buffer_radius):
     b_line=xx
     return b_area,z,b_line
 
-def draw_map(z,area,b_area,b_line,cor):
+def draw_map(gmap,z,area,b_area,b_line,cor):
     bc=b_area
     xx=b_line
     x=area
@@ -102,7 +102,7 @@ def draw_map(z,area,b_area,b_line,cor):
         xt, yt = abc.exterior.xy
         gmap.polygon(xt, yt,
                        color = 'orange')
-    gmap.draw( "C:\\Users\91963\\Desktop\\anupam.html" )
+    gmap.draw("templates/abc.html")
     print("C:\\Users\91963\\project1\\templates\\map19.html")
 
     return None

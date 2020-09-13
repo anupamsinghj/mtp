@@ -16,7 +16,9 @@ def home(request):
     return render(request, 'home.html')
 
 def map(request):
-    return render(request, 'map18.html')
+    return render(request, 'abc.html')
+
+
 '''
 def register(request):
     if request.method == 'POST':

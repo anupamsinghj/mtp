@@ -10,4 +10,7 @@ urlpatterns = [
     path('upload', views.upload, name='upload'),
     path('fupload', views.fupload, name='fupload'),
     path('hupload', views.hupload, name='hupload'),
+    path('books', views.books, name='books'),
+    path('books/uploadb', views.uploadb, name='uploadb'),
+    path('create', views.create, name='create'),
 ]
