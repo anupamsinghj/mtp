@@ -16,7 +16,13 @@ def home(request):
     return render(request, 'home.html')
 
 def map(request):
-    return render(request, 'abc.html')
+    return render(request, 'abcd.html')
+
+def mapf(request):
+    return render(request, 'first.html')
+
+def mapff(request):
+    return render(request, 'ffirst.html')
 
 
 '''

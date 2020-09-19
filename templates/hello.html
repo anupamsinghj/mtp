@@ -9,8 +9,10 @@
     {% if user.is_authenticated %}
     <h1>Hello! {{ user.first_name }}</h1>
     <li><a href="home">Main</a></li>
+    <li><a href="{% url 'uploadf' %} " class="btn btn-primary"> newproject</a> </li>
     <li><a href="accounts/fupload" class="btn btn-primary">Project</a></li>
     <li><a href="{% url 'books' %} " class="btn btn-primary"> Book</a> </li>
+    <li><a href="{% url 'nfupload' %} " class="btn btn-primary">neww</a> </li>
     <li><a href="accounts/logout" class="btn btn-primary">Logout</a></li>
     <li><a href="accounts/upload" class="btn btn-primary">Upload</a></li>
     {% else %}

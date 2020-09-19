@@ -1,0 +1,59 @@
+
+{% extends "base.html" %}
+
+{% block body %}
+{% load static %}
+{% load crispy_forms_tags %}
+<div class="navbar">
+  <a href="https://www.ieor.iitb.ac.in/">IEOR</a>
+  <a href="#">Link</a>
+  <a href="#">Link</a>
+
+  <a href="/" class="right">Go to Home Page</a>
+
+</div>
+
+<div class="row">
+  <div class="side">
+  <h1>INPUT SCREEN</h1>
+  <h2 style = "color:blue">Upload a List of BTS</h2>
+  <form class="" action="uploadf" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <input type = "submit" class="btn btn-primary" >
+  </form>
+
+
+
+
+  <li><a href="hupload">Next</a></li>
+  <h2 style = "color:blue">Enter hotspot region </h2>
+
+  <form action="/action_page.php">
+  <label for="myfile">Select a file:</label>
+  <input type="file" id="myfile" name="myfile"><br><br>
+  <input type="submit" value="Submit">
+  </form>
+
+  <h3 style = "color:red">OR:</h3>
+  <form action="/action_page.php">
+  <label for="homepage">Enter url of file :</label>
+  <input type="url" id="homepage" name="homepage">
+  <input type="submit" value="Submit">
+  </form>
+
+    <form class="" action="create" method="post">
+      {% csrf_token %}
+      <h2 style = "color:blue">To see your buffer area : </h2>
+      <input type="submit"  onclick="alert('Are you sure!')"><br>
+    <button type="button" onclick="alert('Are you sure!')", style="background-color: yellow;">Click here!</button>
+    </form>  </div>
+  <div class="main">
+  <h1>OUTPUT SCREEN</h1>
+
+   <iframe width="100%" height="700" src="/map"  frameborder="1" allow="autoplay; encrypted-media" allowfullscreen align="left" ></iframe>
+
+  </div>
+ </div>
+
+{% endblock %}

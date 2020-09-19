@@ -1,36 +1,39 @@
 from django.http import HttpResponse
 from django import forms
 from django.contrib.auth import authenticate
-#from .apps import add
 from django.views.generic import TemplateView, ListView, CreateView
 from django.urls import reverse_lazy
 from django.views.generic.base import TemplateView
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User,auth
 from django.contrib import messages
-from django.core.files.storage import FileSystemStorage
+from django.core.files.storage import FileSystemStorage#, OverwriteStorage
 
-from .forms import BookForm
-from .models import Book
+from .forms import BookForm,uploadfForm
+from .models import Book, OverwriteStorage, uploadf
 ####################################################
                 # IMPORTING FUNCTION FROM APP
 from .apps import draw_circle, map_base, import_data, f_poly, i_poly, draw_map
 ####################################################
 
+#fn = 'anupam'
+
 def create(request):
-    file_name='media/ffile.csv'
-    buffer_radius=2
+    file_name='media/' + fn
+    #buffer_radius=2
     points,cor = import_data(file_name)
     gmap=map_base(lat=28.5760,lon= 77.2777,zoom=12)
     if request.method == 'POST':
                 lat = float(request.POST['lat'])
                 lon = float(request.POST['lon'])
                 radius = float(request.POST['radius'])
+                buffer_radius = float(request.POST['bradius'])
                 print(lat + lon,radius)
                 area=draw_circle(lat=lat,lon = lon,radius= radius )
                 zz=i_poly(area,points)
                 b_area,z,b_line=f_poly( area,points,buffer_radius)
                 b_area,z,b_line=f_poly( area,points,buffer_radius)
+                gmap=map_base(lat=lat,lon= lon,zoom=12)
                 draw_map(gmap,z,area,b_area,b_line,cor)
                 print('run succesfully')
                 return redirect('hupload')
@@ -105,14 +108,17 @@ def upload(request):
 
 def fupload(request):
     context={}
+    global fn
     if request.method == 'POST':
         uploaded_file = request.FILES['myfile']
         print(uploaded_file.name)
         fs = FileSystemStorage()
+        fn = uploaded_file.name
+        #print(fn)
         print(uploaded_file)
         if 'csv' in uploaded_file.name:
             i=1
-            name = fs.save('ffile.csv', uploaded_file)
+            name = fs.save(uploaded_file.name, uploaded_file)
             context['url'] = fs.url(name)
             i+=1
             messages.info(request,'file succesfully uploaded ')
@@ -129,6 +135,8 @@ def fupload(request):
 
 def hupload(request):
     context={}
+    abc = fn
+    print(abc)
     if request.method == 'POST':
         uploaded_file = request.FILES['hfile']
         print(uploaded_file.name)
@@ -147,12 +155,13 @@ def hupload(request):
 
         #return redirect('/')
     else :
-        return render(request, 'hupload.html',context)
-
-
+        return render(request, 'hupload.html',{'fn': abc})
 
 def books(request):
     books = Book.objects.all()
+    n=len(books)
+    for book in books:
+        print(book.title)
     return render(request, 'book_list.html', {
         'books': books
     })
@@ -166,5 +175,17 @@ def uploadb(request):
     else:
         form = BookForm()
     return render(request, 'upload_book.html', {
+        'form': form
+    })
+
+def uploadf(request):
+    if request.method == 'POST':
+        form = uploadfForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('uploadf')
+    else:
+        form = uploadfForm()
+    return render(request, 'uploadf.html', {
         'form': form
     })

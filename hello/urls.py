@@ -8,6 +8,8 @@ urlpatterns = [
     #path('register/', views.register, name='register'),
     path('home/', views.home, name='home'),
     path('map/', views.map, name='map'),
+    path('mapf/', views.mapf, name='mapf'),
+    path('mapff/', views.mapff, name='mapff'),
     path('a', TemplateView.as_view(template_name="a.html")),
 
     #path('add', views.add, name='add')

@@ -40,6 +40,7 @@ def import_data(file_name):
     lon=df['lon']
     points = np.stack((lat,lon), axis=1)
     cor={'lat':lat,'lon':lon}
+
     return points,cor
 
 def i_poly(area,points):
