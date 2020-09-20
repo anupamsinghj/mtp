@@ -16,12 +16,14 @@
   <div class="side">
   <h1>INPUT SCREEN</h1>
   <h2 style = "color:blue">Upload a List of BTS</h2>
+
   <form class="" action="nfupload" method="post" enctype="multipart/form-data">
                   {% csrf_token %}
                   <label for="myfile">Select a file (must be csv file):</label><br>
-                  <input type="file" id="myfile" name="myfile"><br><br>
-                  <input type="submit" value="Upload">
-  </form>
+                  <input type="file" id="myfile" name="myfile"><br>
+                  <input type="submit" value="Upload" onclick= "alert('did you read instruction for file uploading ?')">
+  </form><br>
+  <li>Instruction for file uploading : <a href="{% url 'info1' %} " class="btn btn-primary">Click here</a> </li>
                   <div >
                     {% for m in messages %}
                     <h2>{{m}}</h2>
@@ -33,12 +35,13 @@
 
 
   <h2 style = "color:blue">Enter hotspot region </h2>
-  <form class="" action="hupload" method="post" enctype="multipart/form-data">
+  <form class="" action="nhupload" method="post" enctype="multipart/form-data">
                   {% csrf_token %}
                   <label for="hfile">Select a file (must be csv file):</label><br>
                   <input type="file" id="hfile" name="hfile"><br><br>
                   <input type="submit" value="Upload">
   </form>
+    <li>Instruction for file uploading : <a href="{% url 'info2' %} " class="btn btn-primary">Click here</a> </li>
                   <div >
                     {% for m in messages %}
                     <h2>{{m}}</h2>

@@ -22,6 +22,7 @@
                   <input type="file" id="myfile" name="myfile"><br><br>
                   <input type="submit" value="Upload">
   </form>
+  <li>Instruction for file uploading : <a href="{% url 'info1' %} " class="btn btn-primary">Click here</a> </li>
                   <div >
 
                   </div>
@@ -36,6 +37,9 @@
                     <input type="file" id="hfile" name="hfile"><br>
                     <input type="submit" value="Upload">
     </form>
+    <li>Instruction for file uploading : <a href="{% url 'info2' %} " class="btn btn-primary">Click here</a> </li>
+    <h3>file uploaded succesfully : {{hfn}}</h3>
+
                     <div >
                       {% for m in messages %}
                       <h2>{{m}}</h2>
@@ -57,11 +61,11 @@
   </form>
 
 
-  <form class="" action="create2" method="post">
+  <form class="" action="create3" method="post">
     {% csrf_token %}
     <h2 style = "color:blue">To see your buffer area : </h2>
-    <input type="submit"   value="Click here" onclick="alert('Are you sure!')"><br>
-  </form>
+    <input type="submit" value="Click here" onclick="alert('Are you sure!')"><br>
+    </form>
   </div>
   <div class="main">
 

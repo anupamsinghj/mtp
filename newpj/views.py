@@ -9,46 +9,13 @@ from django.core.files.storage import FileSystemStorage#, OverwriteStorage
 from .models import Book, OverwriteStorage, uploadf
 ####################################################
                 # IMPORTING FUNCTION FROM APP
-from .apps import draw_circle,map_base1, map_base, import_data, f_poly, i_poly, draw_map
+from .apps import draw_circle,map_base1,h_area, map_base, import_data, f_poly, i_poly, draw_map
 ####################################################
+def info1(request):
+    return render(request, 'info.html')
 
-
-def nupload(request):
-    context={}
-    if request.method == 'POST':
-        uploaded_file = request.FILES['document']
-        print(uploaded_file.name)
-        fs = FileSystemStorage()
-        print(uploaded_file)
-        if 'csv' in uploaded_file.name:
-            i=1
-            name = fs.save(uploaded_file.name, uploaded_file)
-            context['url'] = fs.url(name)
-            i+=1
-            return render(request, 'upload.html',context)
-        else :
-            messages.info(request,'you have not uploade a csv file')
-            return redirect('upload')
-
-        return redirect('/')
-    else :
-        return render(request, 'upload.html',context)
-
-
-
-def n1fupload(request):
-    if 'csv' in uploaded_file.name:
-        i=1
-        name = fs.save(uploaded_file.name, uploaded_file)
-        context['url'] = fs.url(name)
-        i+=1
-        messages.info(request,'file succesfully uploaded ')
-        points,cor = import_data('media/' + fn)
-        gmap=map_base(points,zoom=12)
-        abc=fn
-        return render(request, 'nhupload.html',{'abc':abc}  )
-
-
+def info2(request):
+    return render(request, 'info2.html')
 
 def nfupload(request):
     context={}
@@ -68,7 +35,7 @@ def nfupload(request):
             name = fs.save(uploaded_file.name, uploaded_file)
             context['url'] = fs.url(name)
             print('anu' + str(fs.url(name))[1:])
-            messages.info(request,'file succesfully uploaded ')
+            #messages.info(request,'file succesfully uploaded ')
             points,cor = import_data(str(fs.url(name))[1:])
             gmap=map_base(points,zoom=12)
             abc=fn
@@ -86,27 +53,27 @@ def nfupload(request):
 
 def nhupload(request):
     context={}
-    abc = fn
+    global pointss, gmapp, fnn
     if request.method == 'POST':
         uploaded_file = request.FILES['hfile']
         print(uploaded_file.name)
         fs = FileSystemStorage()
+        fnn = uploaded_file.name
         print(uploaded_file)
         if 'csv' in uploaded_file.name:
-            i=1
-            name = fs.save("hfile.csv", uploaded_file)
+            name = fs.save(uploaded_file.name, uploaded_file)
             context['url'] = fs.url(name)
-            i+=1
-            messages.info(request,'file succesfully uploaded ')
-            return render(request, 'hupload.html', context)
+            print('anu' + str(fs.url(name))[1:])
+            #messages.info(request,'file succesfully uploaded ')
+            pointss,cor = import_data(str(fs.url(name))[1:])
+            #gmap=map_base(points,zoom=12)
+            abc=fnn
+            return render(request, 'hnhupload.html',{'hfn':abc, 'fn':fn}  )
         else :
             messages.info(request,'ERROR : upload only csv file ')
             return redirect('nhupload')
-
-        #return redirect('/')
     else :
-        return render(request, 'nhupload.html',{'fn': abc})
-
+        return render(request, 'hnhupload.html')
 
 def create1(request):
     #file_name='media/' + abc
@@ -125,8 +92,19 @@ def create2(request):
                         area = draw_circle(lat=lat,lon = lon,radius= radius )
                         zz= i_poly(area,points)
                         bf=buffer_radius -  radius
-                        b_area,z,b_line=f_poly( area,points,bf)
+                        b_area,z,b_line=f_poly( area,pointss,bf)
                         gmap=map_base1(lat=lat,lon= lon,zoom=12)
                         draw_map(gmap,z,area,b_area,b_line,cor)
                         print('run succesfully')
                         return render(request, 'nnnhupload.html',{'fn': fn,'lat': lat,'lon': lon, 'radius': radius, 'buffer_radius': buffer_radius})
+def create3(request):
+    if request.method == 'POST':
+                        #print(lat + lon, radius)
+                        area = h_area(pointss)
+                        zz= i_poly(area,points)
+                        bf=5
+                        b_area,z,b_line=f_poly( area,points,bf)
+                        gmap=map_base(pointss,zoom=12)
+                        draw_map(gmap,z,area,b_area,b_line,cor)
+                        print('run succesfully')
+                        return render(request, 'hhnhupload.html',{'hfn':fnn, 'fn':fn})

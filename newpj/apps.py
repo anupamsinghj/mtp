@@ -24,14 +24,17 @@ def draw_circle(array=[],lat=0,lon=0,radius=0):
     else :
         a=1
     return Polygon(x)
+
 def map_base1(lat=28.0760,lon= 77.8777,zoom=12):
     gmap=gmplot.GoogleMapPlotter(lat,lon,zoom)
     gmap.apikey = "AIzaSyCeM999Sqh_Vfo4ZZMAmMUJyRQcl78SyRw"
-    gmap.draw( "templates/abc.html" )
+    gmap.draw( "templates/abcd.html" )
     #gmap.circle(19.076956, 72.848481, 8000,'red')
     print('map_created')
     return gmap
-
+def h_area(points):
+    return Polygon(points)
+    
 def map_base(points,zoom=12):
     gmap=gmplot.GoogleMapPlotter(min(points[:,0]) + (max(points[:,0]) - min(points[:,0])) / 2,min(points[:,1]) + (max(points[:,1]) - min(points[:,1])) / 2,zoom)
     gmap.apikey = "AIzaSyCeM999Sqh_Vfo4ZZMAmMUJyRQcl78SyRw"

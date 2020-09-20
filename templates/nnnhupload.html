@@ -19,7 +19,7 @@
   <form class="" action="nfupload" method="post" enctype="multipart/form-data">
                   {% csrf_token %}
                   <label for="myfile">Select a file (must be csv file):</label><br>
-                  <input type="file" id="myfile" name="myfile"><br><br>
+                  <input type="file" id="myfile" name="myfile"><br>
                   <input type="submit" value="Upload">
   </form>
                   <div >
@@ -30,12 +30,13 @@
 <h3>file uploaded succesfully : {{fn}}</h3>
 
     <h2 style = "color:blue">Enter hotspot region </h2>
-    <form class="" action="hupload" method="post" enctype="multipart/form-data">
+    <form class="" action="nhupload" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <label for="hfile">Select a file (must be csv file):</label><br>
-                    <input type="file" id="hfile" name="hfile"><br><br>
+                    <input type="file" id="hfile" name="hfile"><br>
                     <input type="submit" value="Upload">
     </form>
+
                     <div >
                       {% for m in messages %}
                       <h2>{{m}}</h2>
