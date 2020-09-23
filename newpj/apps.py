@@ -34,7 +34,7 @@ def map_base1(lat=28.0760,lon= 77.8777,zoom=12):
     return gmap
 def h_area(points):
     return Polygon(points)
-    
+
 def map_base(points,zoom=12):
     gmap=gmplot.GoogleMapPlotter(min(points[:,0]) + (max(points[:,0]) - min(points[:,0])) / 2,min(points[:,1]) + (max(points[:,1]) - min(points[:,1])) / 2,zoom)
     gmap.apikey = "AIzaSyCeM999Sqh_Vfo4ZZMAmMUJyRQcl78SyRw"
@@ -72,7 +72,7 @@ def i_poly(area,points):
 
     return MultiPolygon(z)
 
-def f_poly( area,points,buffer_radius):
+def f_poly( area,points,buffer_radius=5):
     x=area
     vor = Voronoi(points)
     lines = [shapely.geometry.LineString(vor.vertices[line]) for line in vor.ridge_vertices if -1 not in line]

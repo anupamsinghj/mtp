@@ -39,6 +39,7 @@
                   {% csrf_token %}
                   <label for="hfile">Select a file (must be csv file):</label><br>
                   <input type="file" id="hfile" name="hfile"><br><br>
+                  <input type="float" name="bf" placeholder="Buffer radius(Km)" value="{{bf}}"><br>
                   <input type="submit" value="Upload">
   </form>
     <li>Instruction for file uploading : <a href="{% url 'info2' %} " class="btn btn-primary">Click here</a> </li>
