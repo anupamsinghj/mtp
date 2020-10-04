@@ -9,7 +9,7 @@ from django.core.files.storage import FileSystemStorage#, OverwriteStorage
 from .models import Book, OverwriteStorage, uploadf
 ####################################################
                 # IMPORTING FUNCTION FROM APP
-from .apps import draw_circle,map_base1,h_area, map_base, import_data, f_poly, i_poly, draw_map
+from .apps import draw_circle,map_base1,h_area, map_base, import_data, f_poly, i_poly, draw_map, sortf
 ####################################################
 def info1(request):
     return render(request, 'info.html')
@@ -67,6 +67,7 @@ def nhupload(request): # to get file and buffer radius for hotspot regoin
             print('anu' + str(fs.url(name))[1:])
             #messages.info(request,'file succesfully uploaded ')
             pointss,cor = import_data(str(fs.url(name))[1:])
+            pointss=sortf(pointss)
             #gmap=map_base(points,zoom=12)
             abc=fnn
             return render(request, 'hnhupload.html',{'hfn':abc, 'fn':fn, 'bf':bf}  )

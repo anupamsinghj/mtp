@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import shapely
 import json
 import geog
+import math
 import shapely.geometry
 from shapely.ops import polygonize,unary_union
 from scipy.spatial import Voronoi,voronoi_plot_2d
@@ -116,5 +117,22 @@ def draw_map(gmap,z,area,b_area,b_line,cor):
                        color = 'orange')
     gmap.draw("templates/abcd.html")
     print("C:\\Users\91963\\project1\\templates\\map19.html")
-
     return None
+def sortf(point):
+    avgx=min(point[0,:])
+    avgy=min(point[:,1])
+    angle=[]
+    n=[]
+
+    for i in range(len(point)):
+        p= math.degrees(math.atan((point[i,1] - avgy)/(point[i,0] - avgx)))
+        angle.append(p)
+    sangle = np.sort(angle)
+    for i, a in enumerate(angle):
+        if sangle[i] in angle:
+            n.append(angle.index(sangle[i]))
+    abc=[]
+    for i in n:
+        abc.append(point[i,:])
+
+    return np.array(abc)
